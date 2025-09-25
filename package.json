@@ -1,0 +1,24 @@
+{
+  "name": "dropdown-menu",
+  "version": "1.0.0",
+  "description": "Dropdown menu from button.",
+  "keywords": [
+    "html",
+    "javascript"
+  ],
+  "homepage": "https://github.com/glizzy-g/dropdown-menu#readme",
+  "bugs": {
+    "url": "https://github.com/glizzy-g/dropdown-menu/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glizzy-g/dropdown-menu.git"
+  },
+  "license": "GPL-3.0-or-later",
+  "author": "Glizzy G",
+  "type": "module",
+  "main": "dropdown-menu.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
