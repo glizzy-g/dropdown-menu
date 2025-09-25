@@ -20,41 +20,38 @@ class DropdownMenu extends HTMLElement {
     constructor() {
         super();
 
+        this.shadow = this.attachShadow({ mode: "open" });
+
         /**
          * @member {HTMLDivElement} button - The button to dropdown the menu. Note, not a HTMLButtonElement.
          * @public
          */
-        this.button;
+        this.button = document.createElement("div");
+        this.button.part = "button";
+
         /**
          * @member {HTMLDivElement} menu - The menu dropped down.
          * @public
          */
-        this.menu;
+        this.menu = document.createElement("div");
+        this.menu.part = "menu";
 
         /**
          * @member {boolean} menuVisible - Internal tracker for menu visibility.
          * @private
          */
         this.menuVisible = false;
+
+        this.shadow.appendChild(this.button);
+        this.shadow.appendChild(this.menu);
     }
 
     connectedCallback() {
-        // Emulates a button.
-        // Uses the first child of root as the innards of the button, if there is a child.
-        this.button = document.createElement("div");
         this.button.style.display = "inline-block";
 
         if (this.firstElementChild) {
             this.button.appendChild(this.firstElementChild);
         }
-
-        // Dropdown menu with some sensible styles.
-        // Rest of children from root are transferred to menu.
-        // Styles targeting root are passed on to menu.
-        this.menu = document.createElement("div");
-
-        this.menu.style.cssText = this.style.cssText;
-        this.style.cssText = "";
 
         this.menu.style.visibility = "hidden";
         this.menu.style.position = "absolute";
@@ -81,10 +78,6 @@ class DropdownMenu extends HTMLElement {
                 this.menu.style.visibility = "hidden";
             }
         });
-
-        // Append button and menu to root.
-        this.appendChild(this.button);
-        this.appendChild(this.menu);
     }
 }
 
