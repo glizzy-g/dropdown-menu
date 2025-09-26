@@ -49,17 +49,18 @@ class DropdownMenu extends HTMLElement {
     connectedCallback() {
         this.button.style.display = "inline-block";
 
-        if (this.firstElementChild) {
-            this.button.appendChild(this.firstElementChild);
-        }
+        let buttonSlot = document.createElement("slot");
+        buttonSlot.name = "button";
+        this.button.appendChild(buttonSlot);
 
         this.menu.style.visibility = "hidden";
         this.menu.style.position = "absolute";
         this.menu.style.border = "solid 2px black";
         this.menu.style.zIndex = "1";
 
-        this.menu.innerHTML = this.innerHTML;
-        this.innerHTML = "";
+        let menuSlot = document.createElement("slot");
+        menuSlot.name = "menu";
+        this.menu.appendChild(menuSlot);
 
         // Mouse events to show and hide the menu.
         this.button.addEventListener("click", (e) => {
